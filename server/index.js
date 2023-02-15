@@ -10,6 +10,10 @@ import generalRoutes from './routes/general.js';
 import managementRoutes from './routes/management.js';
 import salesRoutes from './routes/sales.js';
 
+// data import for initial data insertion
+import User from './models/User.js';
+import { dataUser } from './data/index.js';
+
 // Config
 dotenv.config();
 const app = express();
@@ -43,6 +47,9 @@ const connectDBAndRunServer = async () => {
     });
 
     if (database) {
+      // For the initial data insertion
+      // User.insertMany(dataUser);
+
       console.log('Mongoose Connected');
       app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
     }
