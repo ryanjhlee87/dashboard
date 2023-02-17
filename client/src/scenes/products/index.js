@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Card,
@@ -11,8 +11,8 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-import { useGetProductsQuery } from 'state/api';
 import Header from 'components/Header';
+import { useGetProductsQuery } from 'state/api';
 
 const Product = ({
   _id,
@@ -36,7 +36,11 @@ const Product = ({
       }}
     >
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color={theme.palette.secondary[700]}>
+        <Typography
+          sx={{ fontSize: 14 }}
+          color={theme.palette.secondary[700]}
+          gutterBottom
+        >
           {category}
         </Typography>
         <Typography variant="h5" component="div">
@@ -62,16 +66,18 @@ const Product = ({
         in={isExpanded}
         timeout="auto"
         unmountOnExit
-        sx={{ color: theme.palette.neutral[300] }}
+        sx={{
+          color: theme.palette.neutral[300],
+        }}
       >
         <CardContent>
           <Typography>id: {_id}</Typography>
-          <Typography>Supply left: {supply}</Typography>
+          <Typography>Supply Left: {supply}</Typography>
           <Typography>
-            Yearly sales this year: {stat.yearlySalesTotal}
+            Yearly Sales This Year: {stat[0].yearlySalesTotal}
           </Typography>
           <Typography>
-            Yearly units sold this year: {stat.yearlyTotalSoldUnits}
+            Yearly Units Sold This Year: {stat[0].yearlyTotalSoldUnits}
           </Typography>
         </CardContent>
       </Collapse>
@@ -81,6 +87,7 @@ const Product = ({
 
 const Products = () => {
   const { data, isLoading } = useGetProductsQuery();
+  console.log(data);
   const isNonMobile = useMediaQuery('(min-width: 1000px)');
 
   return (
@@ -94,7 +101,9 @@ const Products = () => {
           justifyContent="space-between"
           rowGap="20px"
           columnGap="1.33%"
-          sx={{ '& > div': { gridColumn: isNonMobile ? undefined : 'span 4' } }}
+          sx={{
+            '& > div': { gridColumn: isNonMobile ? undefined : 'span 4' },
+          }}
         >
           {data.map(
             ({
