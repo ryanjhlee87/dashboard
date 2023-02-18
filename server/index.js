@@ -19,10 +19,12 @@ import {
   dataProductStat,
   dataTransaction,
   dataOverallStat,
+  dataAffiliateStat,
 } from './data/index.js';
 import Product from './models/Product.js';
 import ProductStat from './models/ProductStat.js';
 import OverallStat from './models/OverallStat.js';
+import AffiliateStat from './models/AffiliateStat.js';
 
 // Config
 dotenv.config();
@@ -63,6 +65,7 @@ const connectDBAndRunServer = async () => {
       // ProductStat.insertMany(dataProductStat);
       // Transaction.insertMany(dataTransaction);
       // OverallStat.insertMany(dataOverallStat);
+      // AffiliateStat.insertMany(dataAffiliateStat);
 
       console.log('Mongoose Connected');
       app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
