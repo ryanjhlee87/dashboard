@@ -154,6 +154,11 @@ const Sidebar = ({
                     </Typography>
                   );
                 }
+
+                // TODO: Debugging needed and closed daily page for that matter
+                if (text === 'Daily') return null;
+                // TODO: //
+
                 const lcText = text.toLowerCase();
                 return (
                   <ListItem key={text} disablePadding>
